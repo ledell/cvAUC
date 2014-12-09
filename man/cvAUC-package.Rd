@@ -10,7 +10,7 @@ This package contains various tools for working with and evaluating cross-valida
 \tabular{ll}{
 Package: \tab cvAUC\cr
 Type: \tab Package\cr
-Version: \tab 1.1.0\cr
+Version: \tab 1.1.0.9000\cr
 Date: \tab 2014-12-07\cr
 License: \tab Apache License (== 2.0)\cr
 }

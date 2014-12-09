@@ -36,9 +36,9 @@ You can install:
 Here is a quick demo of how you can use the package.  In this example we do the following:
 - Load an i.i.d. data set with a binary outcome.
 - We will use 10-fold cross-validation, so we need to divide the indices randomly into 10 folds.  In this step, we [stratify](http://en.wikipedia.org/wiki/Stratified_sampling) the folds by the outcome variable.  Stratification is not necessary, but is commonly performed in order to create validation folds with similar distributions.  This information is stored in a 10-element list called `folds`.  Below, the function that creates the folds is called `.cvFolds`.
-- For the v<sup>th</sup> iteration of the cross-validation (CV) process, fit a model on the training data (i.e. observations in folds `{1,...,10}\v`) and then using this saved fit, generate predicted values for the observations in the v<sup>th</sup> validation fold.  The `.doFit` function below does this procedure.  In this example, we the [Random Forest](http://en.wikipedia.org/wiki/Random_forest) algorithm.
-- Next, this function is applied across all folds to generate predicted values for each validation fold.  
-- These predicted values is stored in vector called `predictions`.  
+- For the v<sup>th</sup> iteration of the cross-validation (CV) process, fit a model on the training data (i.e. observations in folds `{1,...,10}\v`) and then using this saved fit, generate predicted values for the observations in the v<sup>th</sup> validation fold.  The `.doFit` function below does this procedure.  In this example, we use the [Random Forest](http://en.wikipedia.org/wiki/Random_forest) algorithm.
+- Next, the `.doFit` function is applied across all 10 folds to generate the predicted values for the observations in each validation fold.  
+- These predicted values are stored in vector called `predictions`, in the original order of the training observations..
 - Lastly, we use the `ci.cvAUC` function to calculate CV AUC and to generate a 95% confidence interval for this CV AUC estimate.
 
 
