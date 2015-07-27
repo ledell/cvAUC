@@ -4,7 +4,7 @@
 \docType{package}
 \title{Cross-Validated Area Under the ROC Curve Confidence Intervals}
 \description{
-This package contains various tools for working with and evaluating cross-validated area under the ROC curve (AUC) estimators.  The primary functions of the package are \code{ci.cvAUC} and \code{ci.pooled.cvAUC}, which compute confidence intervals for cross-validated AUC estimates based on influence curves of both regular i.i.d and pooled repeated measures data.  One benefit to using influence function based confidence intervals is that they require much less computation time than bootstrapping methods.  The utility function, \code{cvAUC}, which computes cross-validated AUC, is a wrapper for functions from the ROCR package.
+Tools for working with and evaluating cross-validated area under the ROC curve (AUC) estimators.  The primary functions of the package are \code{ci.cvAUC} and \code{ci.pooled.cvAUC}, which compute confidence intervals for cross-validated AUC estimates based on influence curves of both regular i.i.d and pooled repeated measures data.  One benefit to using influence function based confidence intervals is that they require much less computation time than bootstrapping methods.  The utility function, \code{cvAUC}, which computes cross-validated AUC, is a wrapper for functions from the ROCR package.
 }
 \details{
 \tabular{ll}{
@@ -37,5 +37,5 @@ This work was supported by the Doris Duke Charitable Foundation Grant No. 201104
 }
 
 \seealso{
-\url{http://cran.r-project.org/web/packages/ROCR/index.html}
+\url{https://cran.r-project.org/package=ROCR}
 }
