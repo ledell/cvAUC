@@ -8,8 +8,8 @@ For massive data sets, the process of generating a single performance estimate c
 
 The primary functions of the package are `ci.cvAUC` and `ci.pooled.cvAUC`, which report cross-validated AUC and compute confidence intervals for cross-validated AUC estimates based on influence curves for [i.i.d.](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) and [pooled repeated measures data](http://en.wikipedia.org/wiki/Pooled_variance), respectively.  One benefit to using influence curve based confidence intervals is that they require much less computation time than bootstrapping methods.  The utility functions, `AUC` and `cvAUC`, are simple wrappers for functions from the [ROCR](http://cran.r-project.org/web/packages/ROCR/index.html) package. 
 
-Erin LeDell, Maya L. Petersen & Mark J. van der Laan, "Computationally Efficient Confidence Intervals for Cross-validated Area Under the ROC Curve Estimates."  (*In Review*)
-- Preprint: [https://biostats.bepress.com/ucbbiostat/paper304](https://biostats.bepress.com/ucbbiostat/paper304)
+Erin LeDell, Maya L. Petersen & Mark J. van der Laan, "Computationally Efficient Confidence Intervals for Cross-validated Area Under the ROC Curve Estimates."  (*Electronic Journal of Statistics*)
+- Open access article: [http://projecteuclid.org/euclid.ejs/1437742107](http://projecteuclid.org/euclid.ejs/1437742107)
 
 
 ## Install cvAUC

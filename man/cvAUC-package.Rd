@@ -10,8 +10,8 @@ This package contains various tools for working with and evaluating cross-valida
 \tabular{ll}{
 Package: \tab cvAUC\cr
 Type: \tab Package\cr
-Version: \tab 1.1.0.9000\cr
-Date: \tab 2014-12-07\cr
+Version: \tab 1.1.1\cr
+Date: \tab 2015-07-28\cr
 License: \tab Apache License (== 2.0)\cr
 }
 See the help files for the following functions for more information:
@@ -24,8 +24,8 @@ Erin LeDell, Maya Petersen, Mark van der Laan
 Maintainer: Erin LeDell <ledell@berkeley.edu>
 }
 \references{
-LeDell, Erin; Petersen, Maya L.; and van der Laan, Mark J., ``Computationally Efficient Confidence Intervals for Cross-validated Area Under the ROC Curve Estimates.''  (December 2012). U.C. Berkeley Division of Biostatistics Working Paper Series. Working Paper 304. \cr
-\url{http://biostats.bepress.com/ucbbiostat/paper304}
+
+LeDell, Erin; Petersen, Maya; van der Laan, Mark. Computationally efficient confidence intervals for cross-validated area under the ROC curve estimates. Electron. J. Statist. 9 (2015), no. 1, 1583--1607. doi:10.1214/15-EJS1035. \url{http://projecteuclid.org/euclid.ejs/1437742107}.
 
 M. J. van der Laan and S. Rose. Targeted Learning: Causal Inference for Observational and Experimental Data. Springer Series in Statistics. Springer, first edition, 2011.
 
