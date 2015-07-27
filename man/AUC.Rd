@@ -26,7 +26,7 @@ References to the underlying ROCR code, used to calculate area under the ROC cur
  \url{http://rocr.bioinf.mpi-sb.mpg.de}
 }
 \author{
-Erin LeDell \email{ledell@berkeley.edu}
+Erin LeDell \email{oss@ledell.org}
 }
 
 \seealso{

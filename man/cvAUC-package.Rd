@@ -21,7 +21,7 @@ See the help files for the following functions for more information:
 \author{
 Erin LeDell, Maya Petersen, Mark van der Laan
 
-Maintainer: Erin LeDell <ledell@berkeley.edu>
+Maintainer: Erin LeDell <oss@ledell.org>
 }
 \references{
 

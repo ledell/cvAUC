@@ -10,6 +10,7 @@ cvAUC 1.1.1 (07-28-2015)
 -----------------
 * Updated the references section to include the newly published paper, "Computationally Efficient Confidence Intervals for Area Under the ROC Curve Estimates."
 * Edits to `README.md`.
+* Updated maintainer email address.
 
 
 cvAUC 1.1.0 (12-07-2014)

@@ -46,7 +46,7 @@ M. J. van der Laan and S. Rose. Targeted Learning: Causal Inference for Observat
 Tobias Sing, Oliver Sander, Niko Beerenwinkel, and Thomas Lengauer. ROCR: Visualizing classifier performance in R. Bioinformatics, 21(20):3940-3941, 2005.
 }
 \author{
-Erin LeDell \email{ledell@berkeley.edu}
+Erin LeDell \email{oss@ledell.org}
 
 Maya Petersen \email{mayaliv@berkeley.edu}
 
