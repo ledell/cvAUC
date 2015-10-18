@@ -10,8 +10,8 @@ Tools for working with and evaluating cross-validated area under the ROC curve (
 \tabular{ll}{
 Package: \tab cvAUC\cr
 Type: \tab Package\cr
-Version: \tab 1.1.1\cr
-Date: \tab 2015-07-28\cr
+Version: \tab 1.1.2\cr
+Date: \tab 2015-10-18\cr
 License: \tab Apache License (== 2.0)\cr
 }
 See the help files for the following functions for more information:

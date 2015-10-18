@@ -2,7 +2,7 @@ cvAUC <- function(predictions, labels, label.ordering = NULL, folds = NULL) {
   
   # Pre-process the input
   clean <- .process_input(predictions = predictions, labels = labels, 
-                          label.ordering = label.ordering, folds = NULL,
+                          label.ordering = label.ordering, folds = folds,
                           ids = NULL, confidence = NULL)
   
   pred <- ROCR::prediction(clean$predictions, clean$labels)

@@ -6,6 +6,11 @@ To Do
 * Consider automatically converting `labels` or `predictions` to a vector if it's a 1-column data.frame.  Otherwise, it will fail the check that `length(unique(labels)) == 2` and `length(predictions) == length(labels)`.
 
 
+cvAUC 1.1.2 (10-18-2015)
+-----------------
+* Added support for folds as a vector of fold ids (vs a list of row index fold groups) in the `cvAUC` function.
+
+
 cvAUC 1.1.1 (07-28-2015)
 -----------------
 * Updated the references section to include the newly published paper, "Computationally Efficient Confidence Intervals for Area Under the ROC Curve Estimates."
