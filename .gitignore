@@ -1,0 +1,4 @@
+# artifacts from R CMD build/check
+*.Rcheck
+*.tar.gz
+

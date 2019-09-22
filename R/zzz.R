@@ -4,3 +4,5 @@
   packageStartupMessage('Notice to cvAUC users: Major speed improvements in version 1.1.0')
   packageStartupMessage(' ')
 }
+
+`:=` = function(...) NULL
