@@ -16,19 +16,16 @@ Erin LeDell, Maya L. Petersen & Mark J. van der Laan, "Computationally Efficient
 
 You can install:
 
--   the latest released version from CRAN with
+-   the latest released version from CRAN with:
 
     ``` r
     install.packages("cvAUC")
     ```
 
--   the latest development version from GitHub with
+-   the latest development version from GitHub with:
 
     ``` r
-    if (packageVersion("devtools") < 1.6) {
-      install.packages("devtools")
-    }
-    devtools::install_github("ledell/cvAUC")
+    remotes::install_github("ledell/cvAUC")
     ```
 
 ## Using cvAUC
