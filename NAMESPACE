@@ -1,5 +1,4 @@
 import(ROCR)
-import(data.table)
 importFrom("stats", "qnorm")
-
-exportPattern("^[^\\.]")
+importFrom("data.table", "data.table")
+exportPattern("^[^\\.:]")
