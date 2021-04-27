@@ -4,6 +4,9 @@ To Do
 -----------------
 * Consider automatically converting `labels` or `predictions` to a vector if it's a 1-column data.frame.  Otherwise, it will fail the check that `length(unique(labels)) == 2` and `length(predictions) == length(labels)`.
 
+cvAUC 1.1.3 (2021-04-26)
+-----------------
+* `ci.cvAUC()` needs 0.5 for ties: https://github.com/ledell/cvAUC/issues/6
 
 cvAUC 1.1.2 (10-18-2015)
 -----------------
