@@ -25,14 +25,14 @@ ci.cvAUC <- function(predictions, labels, label.ordering = NULL, folds = NULL, c
     n_rows <- length(fold_labels)
     n_pos <- sum(fold_labels == pos)
     n_neg <- n_rows - n_pos
+    pos_rows <- fold_labels == pos
+    neg_rows <- fold_labels == neg
     auc <- AUC(fold_preds, fold_labels)
     DT <- data.table(pred = fold_preds, label = fold_labels)
-    DT <- DT[order(pred, -xtfrm(label))]  #Sort by asc(pred), desc(label)
-    DT[, fracNegLabelsWithSmallerPreds := cumsum(label == neg)/n_neg]
-    DT <- DT[order(-pred, label)] 
-    DT[, fracPosLabelsWithLargerPreds := cumsum(label == pos)/n_pos]
-    DT[, icVal := ifelse(label == pos, w1 * (fracNegLabelsWithSmallerPreds - auc),
-                       w0 * (fracPosLabelsWithLargerPreds - auc))]
+    DT[pos_rows, `:=`(icVal, apply(DT[pos_rows,], 1, function(x){
+      sum(x["pred"] > DT[neg_rows, pred] + .5*(x["pred"] == DT[neg_rows,pred]))})/n_neg * w1 - auc*w1)]
+    DT[neg_rows, `:=`(icVal, apply(DT[neg_rows,], 1, function(x){
+      sum(x["pred"] < DT[pos_rows, pred] + .5*(x["pred"] == DT[pos_rows,pred]))})/n_pos * w0 - auc*w0)]
     return(mean(DT$icVal^2))
   }
 
