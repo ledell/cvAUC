@@ -1,28 +1,28 @@
 # cvAUC
 
-The **cvAUC** R package provides a computationally efficient means of estimating confidence intervals (or variance) of cross-validated Area Under the ROC Curve (AUC) estimates.  
+The **cvAUC** R package provides a computationally efficient means of estimating confidence intervals (or variance) of cross-validated Area Under the ROC Curve (AUC) estimates.  This allows you to generate confidence intervals in seconds, compared to other techniques that are many orders of magnitude slower.
 
 In binary classification problems, the [AUC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve) is commonly used to evaluate the performance of a prediction model. Often, it is combined with [cross-validation](http://en.wikipedia.org/wiki/Cross-validation_%28statistics%29) in order to assess how the results will generalize to an independent data set. In order to evaluate the quality of an estimate for cross-validated AUC, we obtain an estimate of its variance. 
 
 For massive data sets, the process of generating a single performance estimate can be computationally expensive. Additionally, when using a complex prediction method, the process of cross-validating a predictive model on even a relatively small data set can still require a large amount of computation time. Thus, in many practical settings, the [bootstrap](https://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29) is a computationally intractable approach to variance estimation.  As an alternative to the bootstrap, a computationally efficient [influence curve](http://www.jstor.org/stable/2285666) based approach to obtaining a variance estimate for cross-validated AUC can be used.  
 
-The primary functions of the package are `ci.cvAUC` and `ci.pooled.cvAUC`, which report cross-validated AUC and compute confidence intervals for cross-validated AUC estimates based on influence curves for [i.i.d.](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) and [pooled repeated measures data](http://en.wikipedia.org/wiki/Pooled_variance), respectively.  One benefit to using influence curve based confidence intervals is that they require much less computation time than bootstrapping methods.  The utility functions, `AUC` and `cvAUC`, are simple wrappers for functions from the [ROCR](http://cran.r-project.org/package=ROCR) package. 
+The primary functions of the package are `ci.cvAUC()` and `ci.pooled.cvAUC()`, which report cross-validated AUC and compute confidence intervals for cross-validated AUC estimates based on influence curves for [i.i.d.](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) and [pooled repeated measures data](http://en.wikipedia.org/wiki/Pooled_variance), respectively.  One benefit to using influence curve based confidence intervals is that they require much less computation time than bootstrapping methods.  The utility functions, `AUC()` and `cvAUC()`, are simple wrappers for functions from the [ROCR](http://cran.r-project.org/package=ROCR) package. 
 
 Erin LeDell, Maya L. Petersen & Mark J. van der Laan, "Computationally Efficient Confidence Intervals for Cross-validated Area Under the ROC Curve Estimates."  (*Electronic Journal of Statistics*)
-- Open access article: [http://projecteuclid.org/euclid.ejs/1437742107](http://projecteuclid.org/euclid.ejs/1437742107)
+- Open access article: [https://doi.org/10.1214/15-EJS1035](https://doi.org/10.1214/15-EJS1035)
 
 
 ## Install cvAUC
 
 You can install:
 
--   the latest released version from CRAN with:
+-   The latest released version from CRAN with:
 
     ``` r
     install.packages("cvAUC")
     ```
 
--   the latest development version from GitHub with:
+-   The latest development version from GitHub with:
 
     ``` r
     remotes::install_github("ledell/cvAUC")
@@ -30,14 +30,17 @@ You can install:
 
 ## Using cvAUC
  
-Here is a quick demo of how you can use the package.  In this example we do the following:
+Here is a demo of how you can use the package, along with some benchmarks of the speed of the method.  For a simpler example that runs faster, you can check out the help files for the various functions inside the R package.
+
+In this example of the `ci.cvAUC()` function, we do the following:
+
 - Load an i.i.d. data set with a binary outcome.
 - We will use 10-fold cross-validation, so we need to divide the indices randomly into 10 folds.  In this step, we [stratify](http://en.wikipedia.org/wiki/Stratified_sampling) the folds by the outcome variable.  Stratification is not necessary, but is commonly performed in order to create validation folds with similar distributions.  This information is stored in a 10-element list called `folds`.  Below, the function that creates the folds is called `.cvFolds`.
 
-- For the v<sup>th</sup> iteration of the cross-validation (CV) process, fit a model on the training data (i.e. observations in folds `{1,...,10}\v`) and then using this saved fit, generate predicted values for the observations in the v<sup>th</sup> validation fold.  The `.doFit` function below does this procedure.  In this example, we use the [Random Forest](http://en.wikipedia.org/wiki/Random_forest) algorithm.
-- Next, the `.doFit` function is applied across all 10 folds to generate the predicted values for the observations in each validation fold.  
+- For the v<sup>th</sup> iteration of the cross-validation (CV) process, fit a model on the training data (i.e. observations in folds `{1,...,10}\v`) and then using this saved fit, generate predicted values for the observations in the v<sup>th</sup> validation fold.  The `.doFit()` function below does this procedure.  In this example, we use the [Random Forest](http://en.wikipedia.org/wiki/Random_forest) algorithm.
+- Next, the `.doFit()` function is applied across all 10 folds to generate the predicted values for the observations in each validation fold.  
 - These predicted values are stored in vector called `predictions`, in the original order of the training observations..
-- Lastly, we use the `ci.cvAUC` function to calculate CV AUC and to generate a 95% confidence interval for this CV AUC estimate.
+- Lastly, we use the `ci.cvAUC()` function to calculate CV AUC and to generate a 95% confidence interval for this CV AUC estimate.
 
 
 First, we define a few utility functions:
