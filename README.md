@@ -133,7 +133,7 @@ For the example above (10,000 observations), it took ~0.1 seconds to calculate t
 For bigger (i.i.d.) training sets, here are a few rough benchmarks:
 
 - 100,000 observations: ~0.4 seconds 
-- 1 million observations: ~13.0 seconds 
+- 1 million observations: ~5.0 seconds 
 
 To try it on bigger datasets yourself, feel free to replace the 10k-row training csv with either of these files here:
 
