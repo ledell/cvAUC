@@ -45,20 +45,20 @@ First, we define a few utility functions:
 ```r
 .cvFolds <- function(Y, V){
   # Create CV folds (stratify by outcome)	
-  Y0 <- split(sample(which(Y==0)), rep(1:V, length=length(which(Y==0))))
-  Y1 <- split(sample(which(Y==1)), rep(1:V, length=length(which(Y==1))))
-  folds <- vector("list", length=V)
+  Y0 <- split(sample(which(Y==0)), rep(1:V, length = length(which(Y==0))))
+  Y1 <- split(sample(which(Y==1)), rep(1:V, length = length(which(Y==1))))
+  folds <- vector("list", length = V)
   for (v in seq(V)) {folds[[v]] <- c(Y0[[v]], Y1[[v]])}  	
   return(folds)
 }
 
-.doFit <- function(v, folds, train){
+.doFit <- function(v, folds, train, y){
   # Train & test a model; return predicted values on test samples
   set.seed(v)
-  ycol <- which(names(train)==y)
-  params <- list(x = train[-folds[[v]],-ycol],
-                 y = as.factor(train[-folds[[v]],ycol]),
-                 xtest = train[folds[[v]],-ycol])
+  ycol <- which(names(train) == y)
+  params <- list(x = train[-folds[[v]], -ycol],
+                 y = as.factor(train[-folds[[v]], ycol]),
+                 xtest = train[folds[[v]], -ycol])
   fit <- do.call(randomForest, params)
   pred <- fit$test$votes[,2]
   return(pred)
@@ -68,7 +68,7 @@ First, we define a few utility functions:
 This function will execute the example:
 
 ```r
-iid_example <- function(train, y = "V1", V = 10, seed = 1) {
+iid_example <- function(train, y = "response", V = 10, seed = 1) {
   
   # Create folds
   set.seed(seed)
@@ -77,8 +77,9 @@ iid_example <- function(train, y = "V1", V = 10, seed = 1) {
   # Generate CV predicted values
   cl <- makeCluster(detectCores())
   registerDoParallel(cl)
-  predictions <- foreach(v = 1:V, .combine="c", 
-    .packages=c("randomForest")) %dopar% .doFit(v, folds, train)
+  predictions <- foreach(v = 1:V, .combine = "c", 
+    .packages = c("randomForest"),
+    .export = c(".doFit")) %dopar% .doFit(v, folds, train, y)
   stopCluster(cl)
   predictions[unlist(folds)] <- predictions
 
@@ -92,11 +93,11 @@ iid_example <- function(train, y = "V1", V = 10, seed = 1) {
 }
 ```
 
-Load a sample binary outcome training set into R:
+Load a sample binary outcome training set into R with 10,000 rows:
 
 ```r
-train_csv <- "http://www.stat.berkeley.edu/~ledell/data/higgs_10k.csv"
-train <- read.table(train_csv, sep=",")
+train_csv <- "https://erin-data.s3.amazonaws.com/higgs/higgs_train_10k.csv"
+train <- read.csv(train_csv, header = TRUE, sep = ",")
 ```
 
 
@@ -104,20 +105,22 @@ Run the example:
 
 ```r
 library(randomForest)
-library(doParallel)
+library(doParallel)  # to speed up the model training in the example
 library(cvAUC)
 
-res <- iid_example(train = train, y = "V1", V = 10, seed = 1)
-print(res)
+res <- iid_example(train = train, y = "response", V = 10, seed = 1)
+#   user  system elapsed 
+#  0.096   0.005   0.102 
 
+print(res)
 # $cvAUC
-# [1] 0.7813759
-#
+# [1] 0.7818224
+# 
 # $se
-# [1] 0.004534395
+# [1] 0.004531916
 # 
 # $ci
-# [1] 0.7724886 0.7902631
+# [1] 0.7729400 0.7907048
 # 
 # $confidence
 # [1] 0.95
@@ -125,10 +128,17 @@ print(res)
 
 ## cvAUC Performance
 
-For the example above (10,000 observations), it took ~0.2 seconds to calculate the cross-validated AUC and the influence curve based confidence intervals.  This was benchmarked on a 2.3 GHz Intel Core i7 processor using **cvAUC** package version 1.1.0. 
+For the example above (10,000 observations), it took ~0.1 seconds to calculate the cross-validated AUC and the influence curve based confidence intervals.  This was benchmarked on a 3.1 GHz Intel Core i7 processor using **cvAUC** package version 1.1.3. 
 
 For bigger (i.i.d.) training sets, here are a few rough benchmarks:
 
-- 100,000 observations: ~0.5 seconds 
+- 100,000 observations: ~0.4 seconds 
 - 1 million observations: ~13.0 seconds 
+
+To try it on bigger datasets yourself, feel free to replace the 10k-row training csv with either of these files here:
+
+```
+train_csv <- "https://erin-data.s3.amazonaws.com/higgs/higgs_train_100k.csv"
+train_csv <- "https://erin-data.s3.amazonaws.com/higgs/higgs_train_1M.csv"  
+```
 

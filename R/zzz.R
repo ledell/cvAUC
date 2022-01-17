@@ -1,7 +1,5 @@
 .onAttach <- function(...) {
-  packageStartupMessage(' ')
-  packageStartupMessage('cvAUC version: ', utils::packageDescription('cvAUC')$Version)
-  packageStartupMessage(' ')
+  # removed old startup messages
 }
 
 `:=` = function(...) NULL

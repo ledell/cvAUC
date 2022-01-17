@@ -23,7 +23,7 @@ The value returned is the Area Under the ROC Curve (AUC).
 }
 \references{
 References to the underlying ROCR code, used to calculate area under the ROC curve, can be found on the ROCR homepage at:
- \url{http://rocr.bioinf.mpi-sb.mpg.de}
+ \url{https://ipa-tys.github.io/ROCR/}
 }
 \author{
 Erin LeDell \email{oss@ledell.org}
