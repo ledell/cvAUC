@@ -10,8 +10,8 @@ Tools for working with and evaluating cross-validated area under the ROC curve (
 \tabular{ll}{
 Package: \tab cvAUC\cr
 Type: \tab Package\cr
-Version: \tab 1.1.2\cr
-Date: \tab 2015-10-18\cr
+Version: \tab 1.1.3\cr
+Date: \tab 2022-01-16\cr
 License: \tab Apache License (== 2.0)\cr
 }
 See the help files for the following functions for more information:
@@ -33,7 +33,7 @@ Tobias Sing, Oliver Sander, Niko Beerenwinkel, and Thomas Lengauer. ROCR: Visual
 }
 
 \note{
-This work was supported by the Doris Duke Charitable Foundation Grant No. 2011042
+This work was supported by the Doris Duke Charitable Foundation Grant No. 2011042.
 }
 
 \seealso{

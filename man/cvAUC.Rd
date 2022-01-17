@@ -41,16 +41,17 @@ Erin LeDell \email{oss@ledell.org}
 }
 \examples{
 # Example of how to get CV AUC and plot the curve.
-data(ROCR.hiv)
-attach(ROCR.hiv)
+library(cvAUC)
+library(ROCR)  #load example data
 
-out <- cvAUC(hiv.svm$predictions, hiv.svm$labels)
+data(ROCR.xval)
+out <- cvAUC(ROCR.xval$predictions, ROCR.xval$labels)
 
 #Plot fold AUCs
-plot(out$perf, col="grey82", lty=3, main="10-fold CV AUC")
+plot(out$perf, col = "grey82", lty = 3, main = "10-fold CV AUC")
 
 #Plot CV AUC
-plot(out$perf, col="red", avg="vertical", add=TRUE)
+plot(out$perf, col ="red", avg = "vertical", add = TRUE)
 
 # See the ci.cvAUC documentation for an example 
 # of how to use the `folds` argument.

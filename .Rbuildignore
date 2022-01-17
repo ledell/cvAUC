@@ -1,3 +1,5 @@
 README\.md
 \.git/*
 LICENSE
+^.*\.Rproj$
+^\.Rproj\.user$

@@ -34,6 +34,7 @@ Erin LeDell \email{oss@ledell.org}
 }
 \examples{
 library(cvAUC)
+library(ROCR)  #load example data
 
 data(ROCR.simple)
 auc <- AUC(ROCR.simple$predictions, ROCR.simple$labels)
